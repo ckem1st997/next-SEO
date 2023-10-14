@@ -38,10 +38,9 @@ import {
     IconSearch,
 } from '@tabler/icons-react';
 import Link from 'next/link';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useOs } from '@mantine/hooks';
-
-
+import classes from './HeaderMegaMenu.module.css';
 const mockdata = [
     {
         icon: IconCode,
@@ -74,41 +73,41 @@ const mockdata = [
         description: 'Combusken battles with the intensely hot flames it spews',
     },
 ];
-const actions: SpotlightActionData[] = [
-    {
-        id: 'home',
-        label: 'Home',
-        description: 'Get to home page',
-        onClick: () => router.push("/home"),
-        leftSection: <IconHome style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
-      },
-      {
-        id: 'dashboard',
-        label: 'Dashboard',
-        description: 'Get full information about current system status',
-        onClick: () =>router.push("/home"),
-        leftSection: <IconDashboard style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
-      },
-      {
-        id: 'documentation',
-        label: 'Documentation',
-        description: 'Visit documentation to lean more about all features',
-        onClick: () => router.push("/home"),
-        leftSection: <IconFileText style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
-      },
-];
+
 
 export default function HeaderMegaMenu() {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-    const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
     const os = useOs();
-
+    const router = useRouter()
+    const actions: SpotlightActionData[] = [
+        {
+            id: 'home',
+            label: 'Home',
+            description: 'Get to home page',
+            onClick: () => router.push("/home", { scroll: false }),
+            leftSection: <IconHome style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
+        },
+        {
+            id: 'dashboard',
+            label: 'Dashboard',
+            description: 'Get full information about current system status',
+            onClick: () => router.push("/home/index"),
+            leftSection: <IconDashboard style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
+        },
+        {
+            id: 'documentation',
+            label: 'Documentation',
+            description: 'Visit documentation to lean more about all features',
+            onClick: () => router.push("/about"),
+            leftSection: <IconFileText style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
+        },
+    ];
 
     const links = mockdata.map((item) => (
-        <UnstyledButton  key={item.title}>
+        <UnstyledButton key={item.title}>
             <Group wrap="nowrap" align="flex-start">
                 <ThemeIcon size={34} variant="default" radius="md">
-                    <item.icon size={22}  />
+                    <item.icon size={22} />
                 </ThemeIcon>
                 <div>
                     <Text size="sm" >
@@ -122,78 +121,15 @@ export default function HeaderMegaMenu() {
         </UnstyledButton>
     ));
     const { toggle, fullscreen } = useFullscreen();
-    const networkStatus = useNetwork();
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const dark = colorScheme === 'dark';
     return (
         <Box pb={120}>
-            <AppShell.Header px="md">
+            <header>
                 <div >
-                <p>Your os is <b>{os}</b></p>
-                    {/* <p
-
-                    >
-                        {!session && (
-                            <>
-                                <span >
-                                    You are not signed in-  
-                                </span>
-                                <Link
-                                    href="/api/auth/signin"
-
-                                    onClick={(e: any) => {
-                                        e.preventDefault()
-                                        signIn()
-                                    }}
-                                    
-                                >
-                                    Sign in
-                                </Link>
-                            </>
-                        )}
-                        {session?.user && (
-                            <>
-                                {session.user.image && (
-                                    <span
-                                        style={{ backgroundImage: `url('${session.user.image}')` }}
-
-                                    />
-                                )}
-                                <span >
-                                    <small>Signed in as</small>
-                                    <br />
-                                    <strong>{session.user.email ?? session.user.name}</strong>
-                                </span>
-                                <Button
-                                    // href="/api/auth/signout"
-
-                                    onClick={async (e: any) => {
-                                        e.preventDefault()
-                                        const h = await signOut({ redirect: false, callbackUrl: '/auth/login' });
-                                        // console.log(h);
-                                        router.push(h.url)
-                                        //  deleteCookie("user", newCookie);
-
-                                    }}
-                                >
-                                    Sign out
-                                </Button>
-                            </>
-                        )}
-                    </p> */}
+                    <p>Your os is <b>{os}</b></p>
                 </div>
-                <Group align="apart">
-                    <Spotlight
-                        actions={actions}
-                        // searchIcon={<IconSearch size={18} />}
-                        // searchPlaceholder="Search..."
-                        shortcut="mod + shift + 1"
-                        // nothingFoundMessage="Nothing found..."
-                    >
-                        <Group align="center">
-                            <Button onClick={spotlight.open}>Open spotlight </Button>
-                        </Group>
-                    </Spotlight>
+                <Group align="center">
                     {/* <ButtonToggle /> */}
                     <ActionIcon
                         variant="outline"
@@ -201,45 +137,42 @@ export default function HeaderMegaMenu() {
                         onClick={() => toggleColorScheme()}
                         title="Toggle color scheme"
                     >
-                        {dark ? <IconSun  /> : <IconMoonStars  />}
+                        {dark ? <IconSun /> : <IconMoonStars />}
                     </ActionIcon>
-                   
-                    <Link href="/home">
+
+                    <Link href="/home" className={classes.link}>
                         Home
                     </Link>
-                    <Link href="/home/about" >
+                    <Link href="/about" className={classes.link}>
                         about
                     </Link>
-                    <Link href="/home/paga" >
-                        page
+                    <Link href="/home/index" className={classes.link}>
+                        index
                     </Link>
-                    <Link href="/home/service" >
-                        service
+                    <Link href="/ip" className={classes.link}>
+                        ip
                     </Link>
-                    <Link href="/home/staticpages" >
+                    <Link href="/home/staticpages" className={classes.link}>
                         staticpages
                     </Link>
-                    <Link href="/auth/login" >
+                    <Link href="/auth/login" className={classes.link}>
                         Login
                     </Link>
-                    {/* <Text size="sm" color={networkStatus.online ? 'teal' : 'red'}>
-                        {networkStatus.online ? 'Online' : 'Offline'}
-                    </Text> */}
-                    {/* <Button onClick={toggle} color={fullscreen ? 'red' : 'blue'}>
-                        {fullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
-                    </Button>
-                    <Button
-                        onClick={() => setScrollLocked((c) => !c)}
-                        variant="outline"
-                        leftIcon={scrollLocked ? <IconLock size={16} /> : <IconLockOpen size={16} />}
-                    >
-                        {scrollLocked ? 'Unlock scroll' : 'Lock scroll'}
-                    </Button> */}
-
-
-                    <Burger opened={drawerOpened} onClick={toggleDrawer}  />
+                    <Group align="center">
+                        <Button onClick={spotlight.open}>Open spotlight </Button>
+                    </Group>
+                    <Spotlight
+                        actions={actions}
+                        nothingFound="Nothing found..."
+                        highlightQuery
+                        searchProps={{
+                            leftSection: <IconSearch style={{ width: rem(20), height: rem(20) }} stroke={1.5} />,
+                            placeholder: 'Search...',
+                        }}
+                    />
+                    <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
                 </Group>
-            </AppShell.Header>
+            </header>
 
             <Drawer
                 opened={drawerOpened}
@@ -248,6 +181,8 @@ export default function HeaderMegaMenu() {
                 padding="md"
                 title="Navigation"
                 zIndex={1000000}
+                className={classes.hiddenDesktop}
+
             >
             </Drawer>
         </Box>

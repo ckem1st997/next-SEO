@@ -3,6 +3,7 @@ import { ColorSchemeToggle } from "@/components/ColorSchemeToggle/ColorSchemeTog
 import { Welcome } from "@/components/Welcome/Welcome";
 import { useEffect, useState } from "react";
 import AboutPage from "../about/page";
+import HomePage from "../home/page";
 
 export default function GetIp() {
   const [ip, setIp] = useState(null);
@@ -17,7 +18,6 @@ export default function GetIp() {
     <>
       <p >ip/page + {ip}
       </p>
-      <AboutPage></AboutPage>
     </>
   );
 }
