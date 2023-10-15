@@ -2,7 +2,7 @@
 import { LoadingOverlay, Skeleton } from '@mantine/core';
 import { NavigationProgress, nprogress } from '@mantine/nprogress';
 export default function Loading() {
-    nprogress.start();
+  //  nprogress.start();
 
     return (
         <>
