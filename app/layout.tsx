@@ -1,15 +1,16 @@
 
-import React from 'react';
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+import React, { Suspense } from 'react';
+import { MantineProvider, ColorSchemeScript, LoadingOverlay } from '@mantine/core';
 import { theme } from '../theme';
 import LayOutWithSSR from '@/components/LayOutWithSSR';
 import Head from 'next/head';
-import { RouterTransition } from '@/components/RouterTransition';
 import {
   startNavigationProgress,
   completeNavigationProgress,
   NavigationProgress,
 } from '@mantine/nprogress';
+import RouterTransition from '@/components/RouterTransition';
+import Loading from './loading';
 export const metadata = {
   title: 'Mantine Next.js template',
   description: 'I am using Mantine with Next.js!',
@@ -21,25 +22,31 @@ export const metadata = {
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
-      </Head>
+      </head>
       <body>
 
         <MantineProvider theme={theme} >
-        <NavigationProgress  />
+          {/* <LoadingOverlay
+          visible={false}
+          zIndex={1000}
+          overlayProps={{ radius: 'sm', blur: 2 }}
+          loaderProps={{ color: 'pink', type: 'bars' }}
+        /> */}
+
+          {/* <Suspense fallback={<Loading />} /> */}
           <LayOutWithSSR>
             {children}
           </LayOutWithSSR>
-
         </MantineProvider>
 
       </body>
-    </html>
+    </html >
   );
 }
