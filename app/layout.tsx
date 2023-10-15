@@ -33,14 +33,6 @@ export default function RootLayout({ children }: { children: any }) {
       <body>
 
         <MantineProvider theme={theme} >
-          {/* <LoadingOverlay
-          visible={false}
-          zIndex={1000}
-          overlayProps={{ radius: 'sm', blur: 2 }}
-          loaderProps={{ color: 'pink', type: 'bars' }}
-        /> */}
-
-          {/* <Suspense fallback={<Loading />} /> */}
           <LayOutWithSSR>
             {children}
           </LayOutWithSSR>
