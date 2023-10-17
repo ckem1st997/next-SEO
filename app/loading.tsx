@@ -1,8 +1,10 @@
 'use client'
 import { LoadingOverlay, Skeleton } from '@mantine/core';
 import { NavigationProgress, nprogress } from '@mantine/nprogress';
+import { useEffect } from 'react';
 export default function Loading() {
-    nprogress.start();
+
+    // nprogress.start();
     return (
         <>
             <LoadingOverlay
@@ -11,7 +13,7 @@ export default function Loading() {
                 overlayProps={{ radius: 'sm', blur: 2 }}
                 loaderProps={{ color: 'pink', type: 'bars' }}
             />
-            <NavigationProgress />
+            {/* <NavigationProgress /> */}
             <Skeleton height={50} circle mb="xl" />
             <Skeleton height={8} radius="xl" />
             <Skeleton height={8} mt={6} radius="xl" />
