@@ -1,5 +1,6 @@
 'use client' // Error components must be Client Components
  
+import { notifications } from '@mantine/notifications'
 import { useEffect } from 'react'
  
 export default function Error({
@@ -11,7 +12,10 @@ export default function Error({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error)
+    notifications.show({
+      title: 'Default notification',
+      message: ""+error+"",
+    })
   }, [error])
  
   return (
