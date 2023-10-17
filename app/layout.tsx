@@ -9,8 +9,8 @@ import {
   completeNavigationProgress,
   NavigationProgress,
 } from '@mantine/nprogress';
-import RouterTransition from '@/components/RouterTransition';
 import Loading from './loading';
+import { NavigationEvents } from '@/components/navigation-events';
 export const metadata = {
   title: 'Mantine Next.js template',
   description: 'I am using Mantine with Next.js!',
@@ -33,6 +33,7 @@ export default function RootLayout(props: { children: React.ReactNode, auth: Rea
       <body>
 
         <MantineProvider theme={theme} >
+          {/* <NavigationEvents /> */}
           <LayOutWithSSR>
             {props.children}
             {props.auth}
