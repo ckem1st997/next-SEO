@@ -1,7 +1,7 @@
 
 import React, { Suspense } from 'react';
 import { MantineProvider, ColorSchemeScript, LoadingOverlay } from '@mantine/core';
-import { theme } from '../../theme';
+import { theme } from '../theme';
 import LayOutWithSSR from '@/components/LayOutWithSSR';
 import Head from 'next/head';
 import {
@@ -12,7 +12,7 @@ import {
 import RouterTransition from '@/components/RouterTransition';
 import Loading from './loading';
 export const metadata = {
-  title: 'Mantine Next.js layout1',
+  title: 'Mantine Next.js template',
   description: 'I am using Mantine with Next.js!',
 };
 // có thể viết các component con trong các thư mục router và chỉ định 
@@ -34,7 +34,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <MantineProvider theme={theme} >
           <LayOutWithSSR>
-            <p>Layout1</p>
             {children}
           </LayOutWithSSR>
         </MantineProvider>
