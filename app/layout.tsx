@@ -19,7 +19,7 @@ export const metadata = {
 // 'use client' cho các phần mà sẽ xử lý thuần js
 // có thể đưa component client-side vào component server-side và ngược lại
 // quan trọng phải định nghĩa
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
