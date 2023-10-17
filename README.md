@@ -1,5 +1,9 @@
 # Mantine Next.js template
 
+dùng router-group để miuplelayout
+phần hiển thị modal có thể không cần tạo page mà chỉ cần tạo modal
+cái nào cần seo mà cần hiển thị dạng model thì tạo thêm thư mục và page cùng tên
+
 This is a template for [Next.js](https://nextjs.org/) app router + [Mantine](https://mantine.dev/).
 If you want to use pages router instead, see [next-pages-template](https://github.com/mantinedev/next-pages-template).
 

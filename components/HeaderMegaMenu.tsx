@@ -155,7 +155,7 @@ export default function HeaderMegaMenu() {
                     <Link href="/home/staticpages" className={classes.link}>
                         staticpages
                     </Link>
-                    <Link href="/auth/login" className={classes.link}>
+                    <Link href="/login" className={classes.link}>
                         Login
                     </Link>
                     <Group align="center">

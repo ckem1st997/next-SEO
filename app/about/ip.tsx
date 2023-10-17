@@ -7,10 +7,13 @@ export default function AboutIp() {
   const [ip, setIp] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.ipify.org?format=json')
-      .then(res => res.json())
-      .then(data => setIp(data.ip))
-      .catch(err => console.error(err));
+    setTimeout(() => {
+      fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => setIp(data.ip))
+        .catch(err => console.error(err));
+    }, 5000)
+
   }, []);
   return (
     <>

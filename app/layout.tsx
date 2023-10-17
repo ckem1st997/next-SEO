@@ -19,7 +19,7 @@ export const metadata = {
 // 'use client' cho các phần mà sẽ xử lý thuần js
 // có thể đưa component client-side vào component server-side và ngược lại
 // quan trọng phải định nghĩa
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout(props: { children: React.ReactNode, auth: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -34,7 +34,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <MantineProvider theme={theme} >
           <LayOutWithSSR>
-            {children}
+            {props.children}
+            {props.auth}
           </LayOutWithSSR>
         </MantineProvider>
 
