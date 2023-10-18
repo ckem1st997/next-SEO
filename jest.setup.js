@@ -22,5 +22,4 @@ class ResizeObserver {
   unobserve() {}
   disconnect() {}
 }
-
 window.ResizeObserver = ResizeObserver;
